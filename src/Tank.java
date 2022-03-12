@@ -30,8 +30,16 @@ public class Tank {
     }
 
     public void goForward(int i) {
-        if (i > fuel) {
-            i = fuel;
+        int nSign = 0;
+        if (i<0) {
+            nSign = -1;
+        } else if (i==0) {
+            nSign = 0;
+        } else if (i>0) {
+            nSign = 1;
+        }
+        if (Math.abs(i) > fuel) {
+            i = nSign * fuel;
         } else if (fuel == 0) {
             i = 0;
         }
@@ -55,38 +63,27 @@ public class Tank {
     }
 
     public void goBackward(int i) {
-        goForward( - i);
+        int nSign = 0;
+        if (i<0) {
+            nSign = -1;
+        } else if (i==0) {
+            nSign = 0;
+        } else if (i>0) {
+            nSign = 1;
+        }
+        System.out.println("equal " + i + " " + Math.abs(i) + " " + fuel);
+        if (Math.abs(i) > fuel) {
+            i = nSign * fuel;
+        } else if (fuel == 0) {
+            i = 0;
+        }
+        //i = -1 * i;
+        turnLeft();
+        turnLeft();
+        if (dir == 0) x += i;
+        else if (dir == 1) y += i;
+        else if (dir == 2) x -= i;
+        else y -= i;
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public int getDir() {
-        return dir;
-    }
-
-    public int getFuel() {
-        return fuel;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public void setDir(int dir) {
-        this.dir = dir;
-    }
-
-    public void setFuel(int fuel) {
-        this.fuel = fuel;
-    }
 }
